@@ -1,0 +1,154 @@
+<?php
+/** @var \Stoneholl\AdminAccentColor\Block\Adminhtml\PalettePreview $block */
+// Magento 2.3 templates use the block escaping methods.
+// phpcs:disable Magento2.Legacy.EscapeMethodsOnBlockClass.Found
+$areaNames = [
+    'tabs' => __('Tabs'), 'buttons' => __('Buttons'), 'menu' => __('Active Menu'),
+    'sidebar' => __('Sidebar'), 'links' => __('Links')
+];
+?>
+<div class="stoneholl-palette-preview"
+     data-editor-config="<?= $block->escapeHtmlAttr($block->getEditorConfigJson()) ?>"
+     data-global-palette="<?= $block->escapeHtmlAttr($block->getGlobalPaletteJson()) ?>"
+     data-mage-init='{"Stoneholl_AdminAccentColor/js/preview":{}}'>
+    <div class="stoneholl-preset-toolbar">
+        <select class="admin__control-select stoneholl-preset-select"
+                aria-label="<?= $block->escapeHtmlAttr(__('Saved Preset')) ?>">
+            <option value=""><?= $block->escapeHtml(__('Select a preset')) ?></option>
+        </select>
+        <button type="button" class="action-default" data-preset-action="load">
+            <?= $block->escapeHtml(__('Load')) ?>
+        </button>
+        <button type="button" class="action-default" data-preset-action="save-as">
+            <?= $block->escapeHtml(__('Save As...')) ?>
+        </button>
+        <button type="button" class="action-default" data-preset-action="delete">
+            <?= $block->escapeHtml(__('Delete Preset')) ?>
+        </button>
+        <button type="button" class="action-default" data-palette-reset-all="1">
+            <?= $block->escapeHtml(__('Reset All Colors')) ?>
+        </button>
+    </div>
+    <div class="stoneholl-preset-save" hidden>
+        <input type="text" class="admin__control-text stoneholl-preset-name" maxlength="64"
+               aria-label="<?= $block->escapeHtmlAttr(__('Preset Name')) ?>"
+               placeholder="<?= $block->escapeHtmlAttr(__('Preset name')) ?>" />
+        <select class="admin__control-select stoneholl-preset-scope"
+                aria-label="<?= $block->escapeHtmlAttr(__('Preset Scope')) ?>"></select>
+        <button type="button" class="action-default" data-preset-action="save">
+            <?= $block->escapeHtml(__('Save Preset')) ?>
+        </button>
+        <button type="button" class="action-default" data-preset-action="cancel">
+            <?= $block->escapeHtml(__('Cancel')) ?>
+        </button>
+    </div>
+    <div class="stoneholl-preset-status" role="status" aria-live="polite"></div>
+    <div class="stoneholl-palette-workspace">
+        <div class="stoneholl-shared-palette" data-mage-init='{"Stoneholl_AdminAccentColor/js/color-field":{}}'>
+            <label class="stoneholl-palette-field-label">
+                <span><?= $block->escapeHtml(__('Element')) ?></span>
+                <select class="admin__control-select stoneholl-palette-target"
+                        aria-label="<?= $block->escapeHtmlAttr(__('Element')) ?>">
+                    <?php foreach ($block->getElements() as $key => $definition): ?>
+                        <option value="<?= $block->escapeHtmlAttr($key) ?>">
+                            <?= $block->escapeHtml(__($definition['label'])) ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
+            </label>
+            <?php foreach ([
+                'background' => __('Background'), 'text' => __('Text'), 'border' => __('Border'),
+                'hover_background' => __('Hover Background'), 'hover_text' => __('Hover Text')
+            ] as $slot => $label): ?>
+                <div class="stoneholl-color-row" data-color-row="<?= $block->escapeHtmlAttr($slot) ?>">
+                    <button type="button" class="action-default stoneholl-color-slot"
+                            data-color-slot="<?= $block->escapeHtmlAttr($slot) ?>" aria-pressed="false">
+                        <?= $block->escapeHtml($label) ?>
+                    </button>
+                    <input class="admin__control-text stoneholl-shared-color-value" type="text"
+                           aria-label="<?= $block->escapeHtmlAttr(__('%1 Color', $label)) ?>"
+                           placeholder="<?= $block->escapeHtmlAttr(__($slot === 'text' ? 'Automatic' : 'Theme')) ?>" />
+                    <input class="stoneholl-accent-color-picker" type="color" value="#eb5202"
+                           aria-label="<?= $block->escapeHtmlAttr(__('Choose %1 Color', $label)) ?>" />
+                    <button class="action-default stoneholl-accent-color-reset" type="button"
+                            aria-label="<?= $block->escapeHtmlAttr(__('Clear %1 Color', $label)) ?>">
+                        <?= $block->escapeHtml(__('Clear')) ?>
+                    </button>
+                </div>
+            <?php endforeach; ?>
+            <div class="stoneholl-accent-color-swatches"></div>
+            <p class="note">
+                <?= $block->escapeHtml(
+                    __('Select Background or Text to apply prepared colors. Empty text is automatic.')
+                ) ?>
+            </p>
+            <div class="stoneholl-palette-toggles" role="group"
+                 aria-label="<?= $block->escapeHtmlAttr(__('Enabled Areas')) ?>">
+                <?php foreach ($block->getAreas() as $area => $definition): ?>
+                    <label>
+                        <input type="checkbox" data-palette-toggle="<?= $block->escapeHtmlAttr($area) ?>" />
+                        <span><?= $block->escapeHtml($areaNames[$area]) ?></span>
+                    </label>
+                <?php endforeach; ?>
+            </div>
+        </div>
+        <div class="stoneholl-preview-scene">
+            <div class="stoneholl-preview-sidebar" data-preview="sidebar">
+                <span class="stoneholl-preview-menu" data-preview="sidebar-item">
+                    <?= $block->escapeHtml(__('Dashboard')) ?>
+                </span>
+                <span class="stoneholl-preview-menu" data-preview="sidebar-hover">
+                    <?= $block->escapeHtml(__('Menu hover')) ?>
+                </span>
+                <span class="stoneholl-preview-menu" data-preview="menu">
+                    <?= $block->escapeHtml(__('Active menu')) ?>
+                </span>
+                <div class="stoneholl-preview-submenu" data-preview="submenu">
+                    <span>
+                        <?= $block->escapeHtml(__('Submenu')) ?>
+                    </span>
+                    <span data-preview="submenu-hover">
+                        <?= $block->escapeHtml(__('Submenu hover')) ?>
+                    </span>
+                </div>
+            </div>
+            <div class="stoneholl-preview-content">
+                <div class="stoneholl-preview-tabs">
+                    <span data-preview="tab">
+                        <?= $block->escapeHtml(__('Active tab')) ?>
+                    </span>
+                    <span data-preview="inactive-tab">
+                        <?= $block->escapeHtml(__('Other tab')) ?>
+                    </span>
+                    <span data-preview="inactive-tab-hover">
+                        <?= $block->escapeHtml(__('Other tab hover')) ?>
+                    </span>
+                </div>
+                <div class="stoneholl-preview-heading" data-preview="heading">
+                    <?= $block->escapeHtml(__('Section heading')) ?>
+                </div>
+                <p>
+                    <span class="stoneholl-preview-link" data-preview="link">
+                        <?= $block->escapeHtml(__('Content link')) ?>
+                    </span>
+                    <span class="stoneholl-preview-link" data-preview="link-hover">
+                        <?= $block->escapeHtml(__('Link hover')) ?>
+                    </span>
+                </p>
+                <div class="stoneholl-preview-actions">
+                    <span class="stoneholl-preview-button" data-preview="button">
+                        <?= $block->escapeHtml(__('Primary action')) ?>
+                    </span>
+                    <span class="stoneholl-preview-button" data-preview="button-hover">
+                        <?= $block->escapeHtml(__('Action hover')) ?>
+                    </span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="stoneholl-preview-feedback" aria-live="polite" aria-atomic="true"></div>
+    <p class="note"><?= $block->escapeHtml(
+        __('Changes apply after Save. Contrast warnings do not block saving.')
+    ) ?></p>
+</div>

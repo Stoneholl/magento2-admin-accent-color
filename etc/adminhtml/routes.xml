@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="admin">
+        <route id="adminaccentcolor" frontName="adminaccentcolor">
+            <module name="Stoneholl_AdminAccentColor"/>
+        </route>
+    </router>
+</config>

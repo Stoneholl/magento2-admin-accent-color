@@ -1,0 +1,227 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="stoneholl" translate="label" sortOrder="850">
+            <label>Stoneholl</label>
+        </tab>
+        <section id="stoneholl_admin_accent_color" translate="label" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Admin Accent Color</label>
+            <tab>stoneholl</tab>
+            <resource>Stoneholl_AdminAccentColor::config</resource>
+            <group id="general" translate="label" sortOrder="10" showInDefault="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1">
+                    <label>Enabled</label>
+                    <comment>Apply configured accent colors in the Magento Admin. The module is disabled by default.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="personalization_mode" translate="label comment" type="select" sortOrder="20" showInDefault="1">
+                    <label>Personalization Mode</label>
+                    <comment>Use one global palette or let each administrator override it from My Account.</comment>
+                    <source_model>Stoneholl\AdminAccentColor\Model\Source\PersonalizationMode</source_model>
+                </field>
+                <field id="theme_status" type="note" sortOrder="30" showInDefault="1">
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ThemeStatus</frontend_model>
+                </field>
+                <field id="personal_settings" type="note" sortOrder="40" showInDefault="1">
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\PersonalSettingsLink</frontend_model>
+                    <depends>
+                        <field id="personalization_mode">personal</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="areas" translate="label comment" sortOrder="20" showInDefault="1">
+                <label>Accent Areas</label>
+                <comment>Empty backgrounds preserve the theme. With a background and empty text, readable white or black text is automatic.</comment>
+                <field id="tabs_enabled" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Tabs and Sections</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tabs_color" translate="label comment" type="text" sortOrder="20" showInDefault="1">
+                    <label>Tabs and Sections — Active Border</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="tabs_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="tabs_background" translate="label comment" type="text" sortOrder="30" showInDefault="1">
+                    <label>Tabs and Sections — Active Background</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="tabs_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="tabs_text_color" translate="label comment" type="text" sortOrder="40" showInDefault="1">
+                    <label>Tabs and Sections — Active Text</label>
+                    <comment>Leave empty for automatic readable text when a background is set. Manual colors are checked in the preview.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="tabs_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="tabs_inactive_color" translate="label comment" type="text" sortOrder="50" showInDefault="1">
+                    <label>Tabs and Sections — Inactive Text</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="tabs_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="tabs_heading_color" translate="label comment" type="text" sortOrder="60" showInDefault="1">
+                    <label>Tabs and Sections — Section Heading Background</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="tabs_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="tabs_heading_text_color" translate="label comment" type="text" sortOrder="70" showInDefault="1">
+                    <label>Tabs and Sections — Section Heading Text</label>
+                    <comment>Leave empty for automatic readable text when a background is set. Manual colors are checked in the preview.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="tabs_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="buttons_enabled" translate="label" type="select" sortOrder="80" showInDefault="1">
+                    <label>Primary Buttons</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="buttons_color" translate="label comment" type="text" sortOrder="90" showInDefault="1">
+                    <label>Primary Buttons — Background</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="buttons_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="buttons_text_color" translate="label comment" type="text" sortOrder="100" showInDefault="1">
+                    <label>Primary Buttons — Text</label>
+                    <comment>Leave empty for automatic readable text when a background is set. Manual colors are checked in the preview.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="buttons_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="menu_enabled" translate="label" type="select" sortOrder="110" showInDefault="1">
+                    <label>Active Menu Item</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="menu_color" translate="label comment" type="text" sortOrder="120" showInDefault="1">
+                    <label>Active Menu Item — Background</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="menu_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="menu_text_color" translate="label comment" type="text" sortOrder="130" showInDefault="1">
+                    <label>Active Menu Item — Text and Icons</label>
+                    <comment>Leave empty for automatic readable text when a background is set. Manual colors are checked in the preview.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="menu_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sidebar_enabled" translate="label" type="select" sortOrder="140" showInDefault="1">
+                    <label>Sidebar and Submenu</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="sidebar_color" translate="label comment" type="text" sortOrder="150" showInDefault="1">
+                    <label>Sidebar and Submenu — Background</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="sidebar_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sidebar_text_color" translate="label comment" type="text" sortOrder="160" showInDefault="1">
+                    <label>Sidebar and Submenu — Text and Icons</label>
+                    <comment>Leave empty for automatic readable text when a background is set. Manual colors are checked in the preview.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="sidebar_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sidebar_hover_color" translate="label comment" type="text" sortOrder="170" showInDefault="1">
+                    <label>Sidebar and Submenu — Hover Background</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="sidebar_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sidebar_hover_text_color" translate="label comment" type="text" sortOrder="180" showInDefault="1">
+                    <label>Sidebar and Submenu — Hover Text and Icons</label>
+                    <comment>Leave empty for automatic readable text when a background is set. Manual colors are checked in the preview.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="sidebar_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sidebar_submenu_color" translate="label comment" type="text" sortOrder="190" showInDefault="1">
+                    <label>Sidebar and Submenu — Submenu Background</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="sidebar_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="sidebar_submenu_text_color" translate="label comment" type="text" sortOrder="200" showInDefault="1">
+                    <label>Sidebar and Submenu — Submenu Text</label>
+                    <comment>Leave empty for automatic readable text when a background is set. Manual colors are checked in the preview.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="sidebar_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="links_enabled" translate="label" type="select" sortOrder="210" showInDefault="1">
+                    <label>Content Links</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="links_color" translate="label comment" type="text" sortOrder="220" showInDefault="1">
+                    <label>Content Links — Text</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="links_enabled">1</field>
+                    </depends>
+                </field>
+                <field id="links_hover_color" translate="label comment" type="text" sortOrder="230" showInDefault="1">
+                    <label>Content Links — Hover and Focus Text</label>
+                    <comment>Enter #RRGGBB or rgb(R, G, B). Leave empty to keep the theme value.</comment>
+                    <backend_model>Stoneholl\AdminAccentColor\Model\Config\Backend\Color</backend_model>
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\ColorField</frontend_model>
+                    <depends>
+                        <field id="links_enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="preview" translate="label" sortOrder="15" showInDefault="1">
+                <label>Colors</label>
+                <field id="sample" type="note" sortOrder="10" showInDefault="1">
+                    <frontend_model>Stoneholl\AdminAccentColor\Block\Adminhtml\System\Config\Preview</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

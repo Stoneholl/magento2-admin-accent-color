@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <stoneholl_admin_accent_color>
+            <general>
+                <enabled>0</enabled>
+                <personalization_mode>global</personalization_mode>
+            </general>
+            <areas>
+                <tabs_enabled>1</tabs_enabled>
+                <buttons_enabled>1</buttons_enabled>
+                <menu_enabled>1</menu_enabled>
+                <sidebar_enabled>1</sidebar_enabled>
+                <links_enabled>1</links_enabled>
+            </areas>
+        </stoneholl_admin_accent_color>
+    </default>
+</config>

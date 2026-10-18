@@ -1,0 +1,50 @@
+{
+    "stoneholl_admin_accent_user": {
+        "column": {
+            "preference_id": true,
+            "user_id": true,
+            "tabs_enabled": true,
+            "tabs_color": true,
+            "tabs_text_color": true,
+            "buttons_enabled": true,
+            "buttons_color": true,
+            "buttons_text_color": true,
+            "menu_enabled": true,
+            "menu_color": true,
+            "menu_text_color": true,
+            "tabs_background": true,
+            "tabs_inactive_color": true,
+            "tabs_heading_color": true,
+            "tabs_heading_text_color": true,
+            "sidebar_enabled": true,
+            "sidebar_color": true,
+            "sidebar_text_color": true,
+            "sidebar_hover_color": true,
+            "sidebar_hover_text_color": true,
+            "sidebar_submenu_color": true,
+            "sidebar_submenu_text_color": true,
+            "links_enabled": true,
+            "links_color": true,
+            "links_hover_color": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "STONEHOLL_ADMIN_ACCENT_USER_USER_ID": true,
+            "STONEHOLL_ADMIN_ACCENT_USER_USER_ID_ADMIN_USER_USER_ID": true
+        }
+    },
+    "stoneholl_admin_accent_preset": {
+        "column": {
+            "preset_id": true,
+            "owner_user_id": true,
+            "scope_key": true,
+            "name": true,
+            "palette_json": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "STONEHOLL_ACCENT_PRESET_SCOPE_NAME": true,
+            "STONEHOLL_ACCENT_PRESET_OWNER_ADMIN_USER": true
+        }
+    }
+}

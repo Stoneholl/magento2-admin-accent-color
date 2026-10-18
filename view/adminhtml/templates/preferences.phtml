@@ -1,0 +1,87 @@
+<?php
+/** @var \Stoneholl\AdminAccentColor\Block\Adminhtml\Preferences $block */
+// Magento 2.3 templates do not provide the standalone $escaper variable.
+// phpcs:disable Magento2.Legacy.EscapeMethodsOnBlockClass.Found
+$settings = $block->getSettings();
+?>
+<?php if (!$block->canCustomize()): ?>
+    <div class="message message-warning">
+        <?= $block->escapeHtml(__('Personal overrides are disabled in the global Admin Accent Color configuration.')) ?>
+    </div>
+<?php endif; ?>
+<?php if (!$block->isThemeSupported()): ?>
+    <div class="message message-warning">
+        <?= $block->escapeHtml(
+            __('Admin theme %1 is not supported. Saved colors will not be applied.', $block->getActiveThemeCode())
+        ) ?>
+    </div>
+<?php endif; ?>
+
+<form id="stoneholl-accent-preferences" class="admin__scope-old" method="post"
+      action="<?= $block->escapeUrl($block->getSaveUrl()) ?>">
+    <?= $block->getBlockHtml('formkey') ?>
+    <fieldset class="admin__fieldset" <?= $block->canCustomize() ? '' : 'disabled="disabled"' ?>>
+        <div class="admin__field">
+            <label class="admin__field-label" for="use_global">
+                <span><?= $block->escapeHtml(__('Palette Source')) ?></span>
+            </label>
+            <div class="admin__field-control">
+                <select class="admin__control-select" id="use_global" name="use_global">
+                    <option value="1" <?= $block->isUsingGlobal() ? 'selected="selected"' : '' ?>>
+                        <?= $block->escapeHtml(__('Use Global Settings')) ?>
+                    </option>
+                    <option value="0" <?= !$block->isUsingGlobal() ? 'selected="selected"' : '' ?>>
+                        <?= $block->escapeHtml(__('Use My Colors')) ?>
+                    </option>
+                </select>
+            </div>
+        </div>
+
+        <?= $block->getChildHtml('palette.preview') ?>
+
+        <?php foreach ($block->getAreas() as $area => $definition): ?>
+            <fieldset class="stoneholl-palette-area" data-palette-area="<?= $block->escapeHtmlAttr($area) ?>">
+                <legend><?= $block->escapeHtml(__($definition['label'])) ?></legend>
+                <div class="admin__field admin__field-option">
+                    <input type="hidden" name="<?= $block->escapeHtmlAttr($area) ?>_enabled" value="0" />
+                    <input class="admin__control-checkbox" type="checkbox"
+                           id="<?= $block->escapeHtmlAttr($area) ?>_enabled"
+                           name="<?= $block->escapeHtmlAttr($area) ?>_enabled" value="1"
+                           <?= $settings->isAreaEnabled($area) ? 'checked="checked"' : '' ?> />
+                    <label class="admin__field-label" for="<?= $block->escapeHtmlAttr($area) ?>_enabled">
+                        <span><?= $block->escapeHtml(__('Enable This Area')) ?></span>
+                    </label>
+                </div>
+                <?php foreach ($definition['fields'] as $fieldName => $label): ?>
+                    <?php $color = (string)$settings->getColor($fieldName); ?>
+                    <div class="admin__field">
+                        <label class="admin__field-label" for="<?= $block->escapeHtmlAttr($fieldName) ?>">
+                            <span><?= $block->escapeHtml(__($label)) ?></span>
+                        </label>
+                        <div class="admin__field-control">
+                            <input class="admin__control-text stoneholl-accent-color-text" type="text"
+                                   id="<?= $block->escapeHtmlAttr($fieldName) ?>"
+                                   name="<?= $block->escapeHtmlAttr($fieldName) ?>"
+                                   value="<?= $block->escapeHtmlAttr($color) ?>"
+                                   placeholder="#RRGGBB or rgb(R, G, B)" />
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </fieldset>
+        <?php endforeach; ?>
+    </fieldset>
+    <div class="page-actions">
+        <div class="page-actions-inner">
+            <div class="page-actions-buttons">
+                <a class="action-default" href="<?= $block->escapeUrl($block->getAccountUrl()) ?>">
+                    <span><?= $block->escapeHtml(__('Back to My Account')) ?></span>
+                </a>
+                <?php if ($block->canCustomize()): ?>
+                    <button class="action-primary" type="submit">
+                        <span><?= $block->escapeHtml(__('Save')) ?></span>
+                    </button>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
+</form>

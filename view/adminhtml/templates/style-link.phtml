@@ -1,0 +1,8 @@
+<?php
+/** @var \Stoneholl\AdminAccentColor\Block\Adminhtml\StyleLink $block */
+// Magento 2.3 templates do not provide the standalone $escaper variable.
+// phpcs:disable Magento2.Legacy.EscapeMethodsOnBlockClass.Found
+?>
+<?php if ($block->shouldRender()): ?>
+    <link rel="stylesheet" type="text/css" href="<?= $block->escapeUrl($block->getStylesheetUrl()) ?>" />
+<?php endif; ?>

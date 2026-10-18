@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="stoneholl_admin_accent_user" resource="default" engine="innodb" comment="Stoneholl Admin Accent User Preferences">
+        <column xsi:type="int" name="preference_id" unsigned="true" nullable="false" identity="true" comment="Preference ID" />
+        <column xsi:type="int" name="user_id" padding="10" unsigned="true" nullable="false" comment="Admin User ID" />
+        <column xsi:type="smallint" name="tabs_enabled" unsigned="true" nullable="false" default="1" comment="Active Tabs Enabled" />
+        <column xsi:type="varchar" name="tabs_color" nullable="true" length="7" comment="Active Tabs Color" />
+        <column xsi:type="varchar" name="tabs_text_color" nullable="true" length="7" comment="Active Tabs Text Color" />
+        <column xsi:type="smallint" name="buttons_enabled" unsigned="true" nullable="false" default="1" comment="Primary Buttons Enabled" />
+        <column xsi:type="varchar" name="buttons_color" nullable="true" length="7" comment="Primary Buttons Color" />
+        <column xsi:type="varchar" name="buttons_text_color" nullable="true" length="7" comment="Primary Buttons Text Color" />
+        <column xsi:type="smallint" name="menu_enabled" unsigned="true" nullable="false" default="1" comment="Active Menu Item Enabled" />
+        <column xsi:type="varchar" name="menu_color" nullable="true" length="7" comment="Active Menu Item Color" />
+        <column xsi:type="varchar" name="menu_text_color" nullable="true" length="7" comment="Active Menu Item Text Color" />
+        <column name="tabs_background" nullable="true" length="7" comment="Tabs Background" xsi:type="varchar" />
+        <column name="tabs_inactive_color" nullable="true" length="7" comment="Tabs Inactive Color" xsi:type="varchar" />
+        <column name="tabs_heading_color" nullable="true" length="7" comment="Tabs Heading Color" xsi:type="varchar" />
+        <column name="tabs_heading_text_color" nullable="true" length="7" comment="Tabs Heading Text Color" xsi:type="varchar" />
+        <column name="sidebar_enabled" nullable="false" unsigned="true" default="1" comment="Sidebar Enabled" xsi:type="smallint" />
+        <column name="sidebar_color" nullable="true" length="7" comment="Sidebar Color" xsi:type="varchar" />
+        <column name="sidebar_text_color" nullable="true" length="7" comment="Sidebar Text Color" xsi:type="varchar" />
+        <column name="sidebar_hover_color" nullable="true" length="7" comment="Sidebar Hover Color" xsi:type="varchar" />
+        <column name="sidebar_hover_text_color" nullable="true" length="7" comment="Sidebar Hover Text Color" xsi:type="varchar" />
+        <column name="sidebar_submenu_color" nullable="true" length="7" comment="Sidebar Submenu Color" xsi:type="varchar" />
+        <column name="sidebar_submenu_text_color" nullable="true" length="7" comment="Sidebar Submenu Text Color" xsi:type="varchar" />
+        <column name="links_enabled" nullable="false" unsigned="true" default="1" comment="Links Enabled" xsi:type="smallint" />
+        <column name="links_color" nullable="true" length="7" comment="Links Color" xsi:type="varchar" />
+        <column name="links_hover_color" nullable="true" length="7" comment="Links Hover Color" xsi:type="varchar" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="preference_id" />
+        </constraint>
+        <constraint xsi:type="unique" referenceId="STONEHOLL_ADMIN_ACCENT_USER_USER_ID">
+            <column name="user_id" />
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="STONEHOLL_ADMIN_ACCENT_USER_USER_ID_ADMIN_USER_USER_ID" table="stoneholl_admin_accent_user" column="user_id" referenceTable="admin_user" referenceColumn="user_id" onDelete="CASCADE" />
+    </table>
+    <table name="stoneholl_admin_accent_preset" resource="default" engine="innodb" comment="Stoneholl Admin Accent Named Palettes">
+        <column xsi:type="int" name="preset_id" unsigned="true" nullable="false" identity="true" comment="Preset ID" />
+        <column xsi:type="int" name="owner_user_id" padding="10" unsigned="true" nullable="true" comment="Personal Owner Admin User ID" />
+        <column xsi:type="varchar" name="scope_key" length="32" nullable="false" comment="Server Derived Owner Scope" />
+        <column xsi:type="varchar" name="name" length="64" nullable="false" comment="Plain Text Preset Name" />
+        <column xsi:type="text" name="palette_json" nullable="false" comment="Normalized Versioned Palette" />
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="preset_id" />
+        </constraint>
+        <constraint xsi:type="unique" referenceId="STONEHOLL_ACCENT_PRESET_SCOPE_NAME">
+            <column name="scope_key" />
+            <column name="name" />
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="STONEHOLL_ACCENT_PRESET_OWNER_ADMIN_USER" table="stoneholl_admin_accent_preset" column="owner_user_id" referenceTable="admin_user" referenceColumn="user_id" onDelete="CASCADE" />
+    </table>
+</schema>

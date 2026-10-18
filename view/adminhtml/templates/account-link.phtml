@@ -1,0 +1,23 @@
+<?php
+/** @var \Stoneholl\AdminAccentColor\Block\Adminhtml\AccountLink $block */
+// Magento 2.3 templates do not provide the standalone $escaper variable.
+// phpcs:disable Magento2.Legacy.EscapeMethodsOnBlockClass.Found
+?>
+<?php if ($block->isAvailable()): ?>
+    <div class="admin__fieldset-wrapper">
+        <div class="admin__fieldset-wrapper-title">
+            <strong class="title"><?= $block->escapeHtml(__('Admin Accent Color')) ?></strong>
+        </div>
+        <div class="admin__fieldset-wrapper-content">
+            <fieldset class="admin__fieldset">
+                <div class="admin__field">
+                    <div class="admin__field-control">
+                        <a class="action-default" href="<?= $block->escapeUrl($block->getPreferencesUrl()) ?>">
+                            <span><?= $block->escapeHtml(__('Configure My Accent Colors')) ?></span>
+                        </a>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+<?php endif; ?>

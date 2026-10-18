@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Stoneholl\AdminAccentColor\Block\Adminhtml\Preferences"
+                   name="stoneholl.admin.accent.color.preferences"
+                   template="Stoneholl_AdminAccentColor::preferences.phtml">
+                <block class="Stoneholl\AdminAccentColor\Block\Adminhtml\PalettePreview" name="stoneholl.accent.personal.preview"
+                       as="palette.preview" template="Stoneholl_AdminAccentColor::preview.phtml"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
