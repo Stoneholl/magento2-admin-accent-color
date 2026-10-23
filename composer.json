@@ -1,5 +1,5 @@
 {
-    "name": "stoneholl/module-admin-accent-color",
+    "name": "stoneholl/magento2-admin-accent-color",
     "description": "Safe per-area and per-administrator accent colors for the standard Magento Admin theme.",
     "type": "magento2-module",
     "license": "MIT",
@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": "~7.4.0||~8.0.0||~8.1.0||~8.2.0||~8.3.0||~8.4.0||~8.5.0",
-        "stoneholl/module-core": "^1.0",
+        "stoneholl/magento2-core": "^1.0.1",
         "magento/framework": "102.0.*||103.0.*",
         "magento/module-backend": "101.0.*||102.0.*",
         "magento/module-config": "101.1.*||101.2.*",
@@ -24,5 +24,8 @@
         "psr-4": {
             "Stoneholl\\AdminAccentColor\\": ""
         }
+    },
+    "replace": {
+        "stoneholl/module-admin-accent-color": "self.version"
     }
 }

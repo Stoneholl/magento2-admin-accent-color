@@ -18,7 +18,7 @@ class ProductProvider implements ProductProviderInterface
             'admin-accent-color',
             'Stoneholl Admin Accent Color',
             ['Stoneholl_AdminAccentColor'],
-            ['stoneholl/module-admin-accent-color']
+            ['stoneholl/magento2-admin-accent-color']
         )];
     }
 }

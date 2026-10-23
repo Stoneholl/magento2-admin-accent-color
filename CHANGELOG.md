@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+
+## 1.2.1 - 2026-10-23
+
+- Rename the Composer package to `stoneholl/magento2-admin-accent-color` and replace its corresponding legacy `stoneholl/module-admin-accent-color` identity at `self.version`.
+- Require the canonical Core package from version 1.0.1 and update installation/migration documentation.
+- Keep Magento module identifiers, configuration, storage and licensing unchanged.
+
 ## 1.2.0 - 2026-10-18
 
 - Declare compatible Admin-user foreign-key widths for Magento 2.3.7 schema installation and upgrades.

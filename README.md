@@ -50,7 +50,7 @@ Stoneholl Core 1.x is required for the shared offline product registry and Admin
 optional and never controls Admin Accent Color functionality. After the package is published in a Composer repository:
 
 ```bash
-composer require stoneholl/module-admin-accent-color
+composer require stoneholl/magento2-admin-accent-color
 bin/magento module:enable Stoneholl_Core Stoneholl_AdminAccentColor
 bin/magento setup:upgrade
 bin/magento cache:flush
@@ -165,3 +165,16 @@ required.
 ## License
 
 This module is released under the MIT License. See [LICENSE](LICENSE).
+
+## Composer package naming
+
+The canonical Composer name is `stoneholl/magento2-admin-accent-color`. The former `stoneholl/module-admin-accent-color` name is a legacy identity. The renamed package replaces that identity at `self.version`, so Composer installs one copy of the Magento module. Existing immutable releases remain unchanged.
+
+When migrating an existing root requirement, back up the project and remove the old requirement without updating, then require the new package with its dependencies:
+
+```bash
+composer remove stoneholl/module-admin-accent-color --no-update
+composer require stoneholl/magento2-admin-accent-color --with-all-dependencies
+```
+
+Run the Magento upgrade, compilation and cache commands documented above according to your deployment mode. Keep native `Stoneholl_*` module names and configuration paths unchanged.
